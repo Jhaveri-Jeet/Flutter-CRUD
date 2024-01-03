@@ -34,10 +34,11 @@ class _HomeViewState extends State<HomeView> {
           child: Visibility(
             visible: data.isNotEmpty,
             replacement: Center(
-                child: Text(
-              'No Todo Item',
-              style: Theme.of(context).textTheme.headlineLarge,
-            )),
+              child: Text(
+                'No Todo Item',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ),
             child: ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
@@ -49,27 +50,28 @@ class _HomeViewState extends State<HomeView> {
                   title: Text(item['title']),
                   subtitle: Text(item['description']),
                   trailing: PopupMenuButton(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      onSelected: (value) {
-                        if (value == 'edit') {
-                          navigateToEditTodo(item);
-                        } else if (value == 'delete') {
-                          deleteData(item['id']);
-                        }
-                      },
-                      itemBuilder: (context) {
-                        return [
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: Text('Edit'),
-                          ),
-                          const PopupMenuItem(
-                            value: 'delete',
-                            child: Text('Delete'),
-                          )
-                        ];
-                      }),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    onSelected: (value) {
+                      if (value == 'edit') {
+                        navigateToEditTodo(item);
+                      } else if (value == 'delete') {
+                        deleteData(item['id']);
+                      }
+                    },
+                    itemBuilder: (context) {
+                      return [
+                        const PopupMenuItem(
+                          value: 'edit',
+                          child: Text('Edit'),
+                        ),
+                        const PopupMenuItem(
+                          value: 'delete',
+                          child: Text('Delete'),
+                        )
+                      ];
+                    },
+                  ),
                 );
               },
             ),
